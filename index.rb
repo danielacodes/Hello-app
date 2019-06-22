@@ -22,7 +22,7 @@ end
 def get_message(birth_path_number)
   case birth_path_number
   when 1
-    message = "Your number is #{birth_path_number}. One is the leader. The number one indicates the ability to stand alone and is a strong vibration. Ruled by the Sun."
+    message = "Your number is #{birth_path_number}. One is the leader. The number one indicates the ability to stand alone, and is a strong vibration. Ruled by the Sun."
   when 2
     message = "Your number is #{birth_path_number}. This is the mediator and peace-lover. The number two indicates the desire for harmony. It is a gentle, considerate, and sensitive vibration. Ruled by the Moon."
   when 3
