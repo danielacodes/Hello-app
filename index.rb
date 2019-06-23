@@ -42,22 +42,14 @@ def get_message(birth_path_number)
   end
 end
 
-# 1. ask the user for their birthdate & assign response to variable
+def setup_index_view
+  birthdate = params[:birthdate]
+  birth_path_number = get_birth_path_number(birthdate)
+  @birth_message = get_message(birth_path_number)
+  erb :index
+end
 
-# puts "Give me your birthdate (MMDDYYYY)."
-# birthdate = gets
-
-# 2. get birth path number using the method & assign to variable
-
-# birth_path_number = get_birth_path_number(birthdate)
-
-# 3. get the correct message using the method & assign to variable
-
-# birth_message = get_message(birth_path_number)
-
-# 4. display the number and message to the user
-
-# puts birth_message
+# ACTION :)
 
 get '/newpage' do
   erb:newpage
@@ -69,15 +61,9 @@ end
 
 post '/' do
   "#{params}"
-  birthdate = params[:birthdate]
-  birth_path_number = get_birth_path_number(birthdate)
-  @birth_message = get_message(birth_path_number)
-  erb :index
+  setup_index_view
 end
 
-#get '/:birthdate' do
-#  birthdate = params[:birthdate]
-#  birth_path_number = get_birth_path_number(birthdate)
-#  @birth_message = get_message(birth_path_number)
-#  erb :index
-#end
+get '/:birthdate' do
+  setup_index_view
+end
