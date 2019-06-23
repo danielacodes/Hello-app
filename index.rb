@@ -63,9 +63,21 @@ get '/newpage' do
   erb:newpage
 end
 
-get '/:birthdate' do
+get '/' do
+  erb :form
+end
+
+post '/' do
+  "#{params}"
   birthdate = params[:birthdate]
   birth_path_number = get_birth_path_number(birthdate)
   @birth_message = get_message(birth_path_number)
   erb :index
 end
+
+#get '/:birthdate' do
+#  birthdate = params[:birthdate]
+#  birth_path_number = get_birth_path_number(birthdate)
+#  @birth_message = get_message(birth_path_number)
+#  erb :index
+#end
