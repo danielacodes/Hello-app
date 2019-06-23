@@ -60,10 +60,17 @@ get '/' do
 end
 
 post '/' do
-  "#{params}"
-  setup_index_view
+  birth_path_number = get_birth_path_number(params[:birthdate])
+# setup_index_view
+  redirect "message/#{birth_path_number}"
 end
 
 get '/:birthdate' do
   setup_index_view
+end
+
+get '/message/:birth_path_number' do
+  birth_path_number = params[:birth_path_number].to_i
+  @birth_message = get_message(birth_path_number)
+  erb :index
 end
