@@ -49,6 +49,10 @@ def setup_index_view
   erb :index
 end
 
+def valid_birthdate(input)
+  return true
+end
+
 # ACTION :)
 
 get '/newpage' do
@@ -60,9 +64,13 @@ get '/' do
 end
 
 post '/' do
-  birth_path_number = get_birth_path_number(params[:birthdate])
-# setup_index_view
-  redirect "message/#{birth_path_number}"
+  birthdate = params[:birthdate].gsub("-","")
+  if valid_birthdate(birthdate)
+    birth_path_number = get_birth_path_number(birthdate)
+    redirect "message/#{birth_path_number}"
+  else
+    erb :form
+  end
 end
 
 get '/:birthdate' do
