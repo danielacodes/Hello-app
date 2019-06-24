@@ -50,7 +50,11 @@ def setup_index_view
 end
 
 def valid_birthdate(input)
-  return true
+  if input.length == 8 && input.match(/^[0-9]+[0-9]$/)
+    return true
+  else
+    return false
+  end
 end
 
 # ACTION :)
@@ -64,11 +68,13 @@ get '/' do
 end
 
 post '/' do
+  @error=""
   birthdate = params[:birthdate].gsub("-","")
   if valid_birthdate(birthdate)
     birth_path_number = get_birth_path_number(birthdate)
     redirect "message/#{birth_path_number}"
   else
+    @error="Sorry, your input wasn't valid. Try again!"
     erb :form
   end
 end
